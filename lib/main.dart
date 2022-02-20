@@ -1,11 +1,18 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 void main()=>runApp(App());
 
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
 
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +27,7 @@ class App extends StatelessWidget {
               letterSpacing: 2.5,
             ),
           ),
-          // centerTitle: true,
+          centerTitle: true,
         ),
         body:Container(
           color:Colors.black,
@@ -161,6 +168,48 @@ class App extends StatelessWidget {
                   ],
                 ),
               ),
+              
+              //#6 Fourth Row
+              Container(
+                child:Row(
+                  children: [
+                    Container(
+                      padding:EdgeInsets.fromLTRB(15.0,15.0,15.0,15.0),
+                      
+                    ),
+
+                    Container(
+                      padding:EdgeInsets.symmetric(vertical: 5.0,horizontal: 5.0),
+                      
+                    ),
+
+
+
+                  ],
+                ),
+              ),
+
+              //#5th Row
+              Container(
+                child:Row(
+                  children: [
+                    Container(
+                      padding:EdgeInsets.fromLTRB(15.0,15.0,15.0,15.0),
+                      
+                    ),
+
+                    Container(
+                      padding:EdgeInsets.symmetric(vertical: 5.0,horizontal: 5.0),
+                      
+                    ),
+
+
+
+                  ],
+                ),
+              ),
+
+
 
             ],
 
@@ -182,3 +231,8 @@ class App extends StatelessWidget {
 
   }
 }
+
+
+
+
+//setState((){}) - To Update the variable value 
