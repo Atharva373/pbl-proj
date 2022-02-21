@@ -1,16 +1,35 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
+import 'dart:async';
+import 'dart:io';
 
-void main()=>runApp(App());
+List<CameraDescription> cameras = [];
+
+// List<CameraDescription> cameras = [];
+// Ensure that plugin services are initialized so that `availableCameras()`
+void main () async{
+  // can be called before `runApp()`
+WidgetsFlutterBinding.ensureInitialized();
+
+// Obtain a list of the available cameras on the device.
+final cameras = await availableCameras();
+
+// Get a specific camera from the list of available cameras.
+final firstCamera = cameras.first;
+
+  runApp(App());
+  runApp(CameraApp());
+}
 
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
-
   @override
   State<App> createState() => _AppState();
 }
+
 
 class _AppState extends State<App> {
   @override
@@ -231,6 +250,44 @@ class _AppState extends State<App> {
 
   }
 }
+class CameraApp extends StatefulWidget {
+  @override
+  _CameraAppState createState() => _CameraAppState();
+}
+
+class _CameraAppState extends State<CameraApp> {
+  late CameraController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = CameraController(cameras[0], ResolutionPreset.max);
+    controller.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!controller.value.isInitialized) {
+      return Container();
+    }
+    return MaterialApp(
+      home: CameraPreview(controller),
+    );
+  }
+}
+
+
 
 
 
