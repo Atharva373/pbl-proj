@@ -30,10 +30,11 @@ dependencies:
   flutter:
     sdk: flutter
   camera:
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  path_provider:
+  path:
+  video_player:
   cupertino_icons: ^1.0.2
+  tflite_flutter:
 
 dev_dependencies:
   flutter_test:
@@ -83,6 +84,8 @@ flutter:
     - family: Raleway
       fonts:
         - asset: fonts/Raleway-VariableFont_wght.ttf
-
+    - family: ZCool
+      fonts:
+        - asset: fonts/ZCOOLQingKeHuangYou-Regular.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
