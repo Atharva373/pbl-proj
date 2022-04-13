@@ -1,7 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:music4mood/main.dart';
+import 'package:music4mood/screens/aboutus.dart';
 import 'package:music4mood/screens/camera.dart';
+import 'package:music4mood/screens/howToUse.dart';
 import '../main.dart';
 List<CameraDescription>? cameras;
 class Home extends StatefulWidget {
@@ -15,20 +17,13 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        //Appbar
         appBar: AppBar(
-          backgroundColor: Colors.grey[850],
-          title:const Text(
-            'MUSIC-4-MOOD',
-            textAlign: TextAlign.center,
-            style:TextStyle(
-              fontFamily: 'Oswald',
-              color: Colors.white,
-              letterSpacing:4.0,
-              fontSize:28.0,
-            ),
-          ),
+          title:const Text('MUSIC-4-MOOD',),
           centerTitle: true,
         ),
+
+        // Body begins here
         body:Container(
           color:Colors.black87,
           child:Column(
@@ -106,11 +101,11 @@ class _HomeState extends State<Home> {
                         width:90.0,height:90.0,
                         child:FloatingActionButton(
                           onPressed: () {
-                            Navigator.push(context,MaterialPageRoute(builder: (context) => CameraScreen(cameras!)));
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => CameraScreen()));
                           },
-                          // backgroundColor: Colors.black12,
-                          // tooltip:"Press To Scan Your Face!",
-                          // elevation:20.0,
+                          backgroundColor: Colors.black12,
+                          tooltip:"Press To Scan Your Face!",
+                          elevation:20.0,
 
                           child:Icon(
                           Icons.camera,
@@ -140,7 +135,7 @@ class _HomeState extends State<Home> {
                         borderRadius:BorderRadius.circular(50.0),
                         
                       ),
-                      child: Text(
+                      child: const Text(
                         'CLick To See Your Face!',
                         textAlign: TextAlign.center,
                         style:TextStyle(
@@ -174,7 +169,9 @@ class _HomeState extends State<Home> {
                       child:SizedBox(
                         width:50.0,height:50.0,
                         child: FloatingActionButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => AboutUs()));
+                          },
                           backgroundColor: Colors.black12,
                           tooltip:"About US!",
                           elevation:20.0,
@@ -202,7 +199,7 @@ class _HomeState extends State<Home> {
                       // ignore: prefer_const_constructors
                       child: Text(
                         'About the Creators...',
-                        style:TextStyle(
+                        style:const TextStyle(
                           fontFamily:'Hersheys',
                           color: Colors.white60,
                           letterSpacing: 1.0,
@@ -235,13 +232,15 @@ class _HomeState extends State<Home> {
                       child:SizedBox(
                         width:50.0,height:50.0,
                         child: FloatingActionButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => HowToUse()));
+                          },
                           backgroundColor: Colors.black12,
                           tooltip:"How To Use",
                           elevation:20.0,
 
                           child:Icon(
-                          Icons.how_to_reg,
+                          Icons.question_answer,
                           color:Colors.greenAccent[100],
                           size:50.0,
                           ),
@@ -286,12 +285,13 @@ class _HomeState extends State<Home> {
         ),
         floatingActionButton:FloatingActionButton(
           onPressed:(){} ,
-          backgroundColor:Colors.greenAccent[400],elevation: 2.0,
+          backgroundColor:Colors.greenAccent[100],elevation: 2.0,
           highlightElevation:2.0,
           // ignore: prefer_const_constructors
           child: Icon(
-            Icons.share_outlined,
+            Icons.share_sharp,
             color:Colors.black87,
+            size:30.0,
           ),
         ),
 
