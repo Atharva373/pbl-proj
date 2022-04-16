@@ -1,10 +1,14 @@
+import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:music4mood/main.dart';
 import 'package:music4mood/screens/aboutus.dart';
 import 'package:music4mood/screens/camera.dart';
 import 'package:music4mood/screens/howToUse.dart';
+import 'package:tflite/tflite.dart';
 import '../main.dart';
+
 List<CameraDescription>? cameras;
 class Home extends StatefulWidget {
   const Home({ Key? key }) : super(key: key);
@@ -14,6 +18,54 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+    late File img;
+  String img_path = "";
+
+  @override
+  void initState() {
+    super.initState();
+    loadModel();
+  }
+
+  Future getimage() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+
+    setState(() {
+      img = image as File;
+    });
+    img_path = img.path;
+    runModel();
+  }
+
+  loadModel() async {
+    await Tflite.loadModel(
+        model: "assets/model_unquant.tflite", labels: "assets/labels.txt");
+  }
+
+  runModel() async {
+    String output = "";
+    var predictions = await Tflite.runModelOnImage(
+        path: img_path, // required
+        imageMean: 0.0, // defaults to 117.0
+        imageStd: 255.0, // defaults to 1.0
+        numResults: 2, // defaults to 5
+        threshold: 0.2, // defaults to 0.1
+        asynch: true // defaults to true
+        );
+    for (var element in predictions!) {
+      setState(() {
+        output = element['label'];
+      });
+    }
+    if (output == '0 Happy') {
+      print("Happy");
+    } else if (output == '1 Sad') {
+      print("Sad");
+    } else if (output == '2 Neutral') {
+      print("Neutral");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

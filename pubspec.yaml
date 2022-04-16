@@ -29,13 +29,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  camera:
-  path_provider:
+  camera: ^0.9.4+19
+  path_provider: ^2.0.9
   path:
   video_player:
   cupertino_icons: ^1.0.2
   tflite_flutter:
   tflite:
+  image_picker: ^0.8.5
 
 dev_dependencies:
   flutter_test:
