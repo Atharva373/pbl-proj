@@ -50,6 +50,8 @@ class _HomeState extends State<Home> {
       print("Sad");
     } else if (output == "2 Neutral") {
       print("Neutral");
+    } else {
+      print("No face");
     }
   }
 
@@ -73,10 +75,14 @@ class _HomeState extends State<Home> {
     // Pick an image
     final XFile? image = await _picker.pickImage(source: ImageSource.camera);
     setState(() {
-      File file = Image.file(File(image!.path));
       img_path = image!.path;
     });
     runModel();
+    // setState(() {
+    //   File file = Image.file(File(image!.path));
+    //   img_path = image!.path;
+    // });
+    // runModel();
   }
 
   @override
