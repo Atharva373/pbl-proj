@@ -1,4 +1,6 @@
 //import 'dart:html';
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -46,9 +48,9 @@ class _HomeState extends State<Home> {
         output = element['label'];
       });
     }
-    if (output == "happy") {
+    if (output == "0 Happy") {
       await launch("https://open.spotify.com/playlist/37i9dQZF1DX7qK8ma5wgG1");
-    } else if (output == "sadness") {
+    } else if (output == "1 Sad") {
       await launch("https://open.spotify.com/playlist/1llkez7kiZtBeOw5UjFlJq");
     }else{
       await launch("https://open.spotify.com/playlist/282qSXRozIyie7XchArY2o");
