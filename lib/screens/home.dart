@@ -5,9 +5,11 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:music4mood/main.dart';
+import 'package:music4mood/screens/about.dart';
 import 'package:music4mood/screens/aboutus.dart';
 import 'package:music4mood/screens/camera.dart';
 import 'package:music4mood/screens/howToUse.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
 import 'package:tflite/tflite.dart';
 
@@ -44,14 +46,12 @@ class _HomeState extends State<Home> {
         output = element['label'];
       });
     }
-    if (output == "0 Happy") {
-      print("Happy");
-    } else if (output == "1 Sad") {
-      print("Sad");
-    } else if (output == "2 Neutral") {
-      print("Neutral");
-    } else {
-      print("No face");
+    if (output == "happy") {
+      await launch("https://open.spotify.com/playlist/37i9dQZF1DX7qK8ma5wgG1");
+    } else if (output == "sadness") {
+      await launch("https://open.spotify.com/playlist/1llkez7kiZtBeOw5UjFlJq");
+    }else{
+      await launch("https://open.spotify.com/playlist/282qSXRozIyie7XchArY2o");
     }
   }
 
@@ -228,7 +228,7 @@ class _HomeState extends State<Home> {
                       onPressed: () {
                         print("In About Us");
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => AboutUs()));
+                            MaterialPageRoute(builder: (context) => Developers()));
                       },
                       backgroundColor: Colors.black12,
                       tooltip: "About US!",

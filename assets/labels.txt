@@ -1,3 +1,7 @@
-0 Happy
-1 Sad
-2 Neutral
+anger
+contempt
+disgust
+fear
+happy
+sadness
+surprise
